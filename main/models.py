@@ -17,6 +17,7 @@ class MoodEntry(models.Model):
 
 class Hat(models.Model):
     name = models.CharField(max_length = 225)
+    desc = models.TextField()
     price = models.FloatField()
     stock = models.IntegerField()
     image = models.CharField(max_length=22083)
