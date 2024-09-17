@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Hat
 from django.shortcuts import render, redirect   # Tambahkan import redirect di baris ini
-from main.forms import MoodEntryForm
-from main.models import MoodEntry
+from main.forms import AddNewHatForm
+from main.models import Hat
 from django.http import HttpResponse
 from django.core import serializers
 
@@ -13,50 +13,36 @@ def home (request) :
     return render(request, 'home.html', {'hat' : hat})
 
 
-# Create your views here.
-def show_main(request):
-    mood_entries = MoodEntry.objects.all()
-
-    context = {
-        'name': ' Mawla Raditya',
-        'class': 'PBP B',
-        'npm': '2306275323',
-        'mood_entries': mood_entries
-    }
-
-    return render(request, "main.html", context)
-
-
-def create_mood_entry(request):
-    form = MoodEntryForm(request.POST or None)
+def add_new_hat(request):
+    form = AddNewHatForm(request.POST or None)
 
     if form.is_valid() and request.method == "POST":
         form.save()
-        return redirect('main:show_main')
+        return redirect('main:home')
 
     context = {'form': form}
-    return render(request, "create_mood_entry.html", context)
+    return render(request, "add_new_hat.html", context)
 
 
-def show_xml(request):
-    data = MoodEntry.objects.all()
+# def show_xml(request):
+#     data = Hat.objects.all()
 
 
-def show_xml(request):
-    data = MoodEntry.objects.all()
-    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+# def show_xml(request):
+#     data = Hat.objects.all()
+#     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
 
-def show_json(request):
-    data = MoodEntry.objects.all()
-    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+# def show_json(request):
+#     data = Hat.objects.all()
+#     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 
-def show_xml_by_id (request, id):
-    data = MoodEntry.objects.filter(pk=id)
-    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+# def show_xml_by_id (request, id):
+#     data = Hat.objects.filter(pk=id)
+#     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
-def show_json_by_id(request, id):
-    data = MoodEntry.objects.filter(pk=id)
-    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+# def show_json_by_id(request, id):
+#     data = Hat.objects.filter(pk=id)
+#     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 

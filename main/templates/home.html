@@ -21,4 +21,34 @@
     {% endfor %}
 
 
-{% endblock %}
+    {% if not hat %}
+    <p>Belum ada topi yang ditambahkan</p>
+    {% else %}
+    <table>
+      <tr>
+        <th>Product Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Stock</th>
+      </tr>
+    
+      {% comment %} Berikut cara memperlihatkan data mood di bawah baris ini 
+      {% endcomment %} 
+      {% for hat in hat %}
+      <tr>
+        <td>{{hat.name}}</td>
+        <td>{{hat.desc}}</td>
+        <td>{{hat.price}}</td>
+        <td>{{hat.stock}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+    
+    <br />
+    
+    <a href="{% url 'main:add_new_hat' %}">
+      <button>Add New Hat</button>
+    </a>
+    {% endblock content %}
+
