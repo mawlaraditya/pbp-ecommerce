@@ -1,10 +1,10 @@
-from django.contrib import admin
-from .models import Hat
+# from django.contrib import admin
+# from .models import Hat
 
-# Register your models here.
+# # Register your models here.
 
-class HatAdmin(admin.ModelAdmin):
-    list_display = ('name', 'desc', 'price', 'stock')
+# class HatAdmin(admin.ModelAdmin):
+#     list_display = ('name', 'desc', 'price', 'stock')
 
 
-admin.site.register(Hat, HatAdmin)
+# admin.site.register(Hat, HatAdmin)

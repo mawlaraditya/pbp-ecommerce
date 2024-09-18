@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-from main.models import Hat
+from main.models import MoodEntry
 
-class AddNewHatForm(ModelForm):
+class MoodEntryForm(ModelForm):
     class Meta:
-        model = Hat
-        fields = ["name", "desc", "price"]
+        model = MoodEntry
+        fields = ["product", "desc", "price", "stock"]
