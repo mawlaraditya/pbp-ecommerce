@@ -1,7 +1,10 @@
 import uuid  
 from django.db import models
+from django.contrib.auth.models import User
+
 
 class MoodEntry(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)  # tambahkan baris ini
     product = models.CharField(max_length=255)
     time = models.DateField(auto_now_add=True)
@@ -9,6 +12,13 @@ class MoodEntry(models.Model):
     price = models.IntegerField()
     stock = models.IntegerField()
     
+
+class Person(models.Model):
+    nama = models.CharField(max_length=225)
+    umur = models.IntegerField()
+    ishappy = models.BooleanField()
+
+
 
 # class Hat(models.Model):
 #     name = models.CharField(max_length = 225)

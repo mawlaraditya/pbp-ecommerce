@@ -2,13 +2,13 @@
 {% block content %}
 <h1>Hatopia</h1>
 
-<h5>Name </h5>
+<h5>NPM: </h5>
 <p>{{ npm }}<p>
 
-<h5>Name:</h5>
+<h5>NAME:</h5>
 <p>{{ name }}</p>
 
-<h5>Class:</h5>
+<h5>KELAS:</h5>
 <p>{{ class }}</p>
 
 
@@ -43,5 +43,12 @@
 <a href="{% url 'main:create_mood_entry' %}">
   <button>Tambahkan Product</button>
 </a>
+
+<a href="{% url 'main:logout' %}">
+  <button>Logout</button>
+</a>
+
+<h5>Sesi terakhir login: {{ last_login }}</h5>
+
 
 {% endblock content %}
