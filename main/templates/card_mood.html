@@ -1,0 +1,24 @@
+<figure class="snip1418">
+    <!-- Dynamic image -->
+    <img src="{{ mood_entry.image }}" alt="{{ mood_entry.product }}"/>
+
+    <!-- Add to Cart button -->
+    <div class="add-to-cart">
+      <i class="ion-android-add"></i><span>Add to Cart</span>
+    </div>
+
+    <!-- Product details -->
+    <figcaption>
+      <!-- Dynamic product name -->
+      <h3>{{ mood_entry.product }}</h3>
+      <!-- Dynamic product description -->
+      <p>{{ mood_entry.desc }}</p>
+      <!-- Dynamic product price -->
+      <div class="price">
+        <s>$24.00</s> ${{ mood_entry.price }}
+      </div>
+      <!-- Stock information -->
+      <p class="text-sm text-gray-600">Stock: {{ mood_entry.stock }}</p>
+    </figcaption>
+    <a href="#"></a>
+</figure>

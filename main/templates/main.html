@@ -1,54 +1,43 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>HATOPIA</title>
+{% endblock meta %}
+
 {% block content %}
-<h1>Hatopia</h1>
+<div class="bg-slate-100 min-h-screen">
+  {% include 'navbar.html' %}
+  
+  <div class="px-3 mb-4 mt-4">
+    <!-- Parent div with flex and justify-between to align items in a row -->
+    <div class="flex justify-between items-center">
+      <!-- Last Login Section -->
+      <div class="flex rounded-md items-center bg-slate-600 py-2 px-4 w-fit">
+        <h1 class="text-white text-center">Last Login: {{ last_login|default_if_none:"Unknown" }}</h1>
+      </div>
 
-<h5>NPM: </h5>
-<p>{{ npm }}<p>
+      <!-- Tambahkan Product Button -->
+      <a href="{% url 'main:create_mood_entry' %}" class="bg-slate-600 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+        Tambahkan Product
+      </a>
 
-<h5>NAME:</h5>
-<p>{{ name }}</p>
-
-<h5>KELAS:</h5>
-<p>{{ class }}</p>
-
-
-{% if not mood_entries %}
-<p>Belum ada product yang ditambahkan</p>
-{% else %}
-<table>
-  <tr>
-    <th>Product</th>
-    <th>Time</th>
-    <th>Description</th>
-    <th>Price</th>
-    <th>Stock</th>
-  </tr>
-
-  {% comment %} Berikut cara memperlihatkan data mood di bawah baris ini 
-  {% endcomment %} 
-  {% for mood_entry in mood_entries %}
-  <tr>
-    <td>{{mood_entry.product}}</td>
-    <td>{{mood_entry.time}}</td>
-    <td>{{mood_entry.desc}}</td>
-    <td>{{mood_entry.price}}</td>
-    <td>{{mood_entry.stock}}</td>
-  </tr>
-  {% endfor %}
-</table>
-{% endif %}
-
-<br />
-
-<a href="{% url 'main:create_mood_entry' %}">
-  <button>Tambahkan Product</button>
-</a>
-
-<a href="{% url 'main:logout' %}">
-  <button>Logout</button>
-</a>
-
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-
-
+    
+    </div>
+  </div>
+    
+  {% if not mood_entries %}
+    <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+      <img src="{% static 'image/sedih-banget.png' %}" alt="Sad face" class="w-32 h-32 mb-4"/>
+      <p class="text-center text-gray-600 mt-4">Belum ada product yang ditambahkan</p>
+    </div>
+  {% else %}
+    <!-- Grid layout for cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full px-3">
+      {% for mood_entry in mood_entries %}
+        {% include 'card_mood.html' with mood_entry=mood_entry %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
 {% endblock content %}

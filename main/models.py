@@ -11,13 +11,9 @@ class MoodEntry(models.Model):
     desc = models.TextField()
     price = models.IntegerField()
     stock = models.IntegerField()
+    image = models.CharField(max_length=22083) 
+
     
-
-class Person(models.Model):
-    nama = models.CharField(max_length=225)
-    umur = models.IntegerField()
-    ishappy = models.BooleanField()
-
 
 
 # class Hat(models.Model):
